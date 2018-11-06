@@ -1,8 +1,7 @@
 #include "hwlib.hpp"
 #include "IrTransmitter.hpp"
 
-
-void flipWait(IrTransmitter & ir, int positive_wait_time, int negative_wait_time ){
+void flipWait(IrTransmitter ir, int positive_wait_time, int negative_wait_time ){
     ir.Send(true);
     hwlib::wait_ms(positive_wait_time);
     if(negative_wait_time != 0){

@@ -1,8 +1,5 @@
-
 SendIrMessageControl::main(){
-
   enum class STATE {WAIT_MESSAGE, WAIT_SECOND_MESSAGE, SENDING_BIT};
-
   wait(IRMessagesSendQueue);
   uint16_t dataIn;
   int i;
@@ -25,13 +22,8 @@ SendIrMessageControl::main(){
           SendTimer.set(3000);
           wait(SendTimer);
           S = STATE::SENDING_BIT;
-
-
-
         case STATE::SENDING_BIT:
           bit = (dataIn>>i)& 1;
-
-
           if(bit == 1){
             w1 == 1600;
             w2 == 800;
@@ -39,15 +31,10 @@ SendIrMessageControl::main(){
             w1 == 800;
             w2 == 1600;
           }
-
           Ir.Send(true);
           SendTimer.set(w1);
-
           Ir.Send(false);
           SendTimer.set(w2);
-
-
-
           if(i == 0){
               n++;
               if(n==2){
