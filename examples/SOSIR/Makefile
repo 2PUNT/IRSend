@@ -9,7 +9,7 @@
 #############################################################################
 
 # source files in this project (main.cpp is automatically assumed)
-SOURCES := IrTransmitter.cpp
+SOURCES := 
 
 # header files in this project
 HEADERS := IrTransmitter.hpp

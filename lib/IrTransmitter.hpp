@@ -12,7 +12,9 @@ private:
 
 public:
     IrTransmitter(hwlib::target::d2_36kHz & IrLED):IrLED(IrLED){};
-    void Send(bool b);
+    void Send(bool b){
+          IrLED.set(b);
+    };
 };
 
 #endif // IRTRANSMITTER_HPP

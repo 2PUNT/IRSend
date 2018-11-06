@@ -27,12 +27,13 @@ int main(){
     flipWait(ir, wait_time, wait_time);
     flipWait(ir, wait_time, wait_time);
     flipWait(ir, wait_time, wait_time);
+
     flipWait(ir, wait_time*3, wait_time);
     flipWait(ir, wait_time*3, wait_time);
     flipWait(ir, wait_time*3, wait_time);
 
-    flipWait(ir, wait_time * 3, 0);
-
-
+    flipWait(ir, wait_time, wait_time);
+    flipWait(ir, wait_time, wait_time);
+    flipWait(ir, wait_time, wait_time);
 	}
 }
