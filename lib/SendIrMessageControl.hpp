@@ -59,6 +59,8 @@ public:
               SendTimer.set(3000);
               wait(SendTimer);
               S = STATE::SENDING_BIT;
+			  
+			  
             case STATE::SENDING_BIT:
               bit = (dataIn>>i)& 1;
               if(bit == 1){
@@ -70,8 +72,10 @@ public:
               }
               IrLED.Send(true);
               SendTimer.set(w1);
+			  wait(SendTimer);
               IrLED.Send(false);
               SendTimer.set(w2);
+			  wait(SendTimer);
               if(i == 0){
                   n++;
                   if(n==2){
@@ -81,6 +85,7 @@ public:
                     S = STATE::WAIT_SECOND_MESSAGE;
                   }
               }
+			  i--;
             }
           }
         }
