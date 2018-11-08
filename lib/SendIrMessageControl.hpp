@@ -82,11 +82,11 @@ public:
             case STATE::SENDING_BIT:
               bit = (dataIn>>i)& 1;
               if(bit == 1){
-                w1 = 1600;
-                w2 = 800;
+                w1 = posHigh;
+                w2 = posLow;
               }else if(bit==0){
-                w1 = 800;
-                w2 = 1600;
+                w1 = negHigh;
+                w2 = negLow;
               }
               IrLED.Send(true);
               SendTimer.set(w1);
