@@ -3,6 +3,7 @@
 
 #include "hwlib.hpp"
 #include "rtos.hpp"
+#include "IrTransmitter.hpp"
 
 class SendIrMessageControl :  public rtos::task<>
 {
