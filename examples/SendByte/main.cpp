@@ -16,10 +16,14 @@ class DummySendIrMessageControl: public rtos::task<>{
 
     void main ()override{
       while(true){
-        hwlib::wait_ms(2000);
-        hwlib::cout << "send to ir";
-        sirmc.sendMessage(170); // blink interval
-		    hwlib::wait_ms(20000);
+        hwlib::wait_ms(1000);
+        //hwlib::cout << "send to ir";
+        sirmc.sendMessage(0xB1E3); // blink interval
+		
+		//id = 10001
+		//d  = 00111
+		//x  = 10110
+		//M  = %1011 0001 1110 0011 = 0xB1E3
       }
     }
 
@@ -32,10 +36,10 @@ int main(){
 	hwlib::wait_ms( 1000 );
 
 	auto OUT = hwlib::target::d2_36kHz();
-  int wait_time = 100;
+  
 	IrTransmitter ir(OUT);
 
-  SendIrMessageControl sir(ir, wait_time*20, wait_time*20, 1);
+  SendIrMessageControl sir(ir, 800, 1600, 1);
 
   DummySendIrMessageControl dummytrigger(sir);
   rtos::run();
