@@ -73,11 +73,13 @@ public:
               i = 15;
               n = 0;
               S = STATE::SENDING_BIT;
+			  break;
 
             case STATE::WAIT_SECOND_MESSAGE:
               SendTimer.set(3000);
               wait(SendTimer);
               S = STATE::SENDING_BIT;
+			  break;
 
 
             case STATE::SENDING_BIT:
@@ -91,10 +93,10 @@ public:
               }
               IrLED.Send(true);
               SendTimer.set(w1);
-			           wait(SendTimer);
+			  wait(SendTimer);
               IrLED.Send(false);
               SendTimer.set(w2);
-			           wait(SendTimer);
+			  wait(SendTimer);
               if(i == 0){
                   n++;
                   if(n==2){
@@ -103,8 +105,10 @@ public:
                     i = 15;
                     S = STATE::WAIT_SECOND_MESSAGE;
                   }
+				  break;
               }
 			  i--;
+			  break;
             }
           }
         }
