@@ -5,6 +5,9 @@
 #include "rtos.hpp"
 #include "IrTransmitter.hpp"
 
+//! \brief Control object that manages the transmitting of ir-messages.
+//! \details SendIrMessageControl uses an IrTransmitter to send ir-messages.
+//! These messages are given by other classes using the function sendMessage.
 class SendIrMessageControl :  public rtos::task<>
 {
 
@@ -20,8 +23,8 @@ private:
 public:
     //! SendIrMessageControl waiting for a hit to the queue
     //! @param IrTransmitter led that will be toggled
-    //! @param low decides the positive low and negative low
-    //! @param High decides the positive High and negative High
+    //! @param low decides the length of the positive low pulse and negative high pulse in microseconds.
+    //! @param High decides the length of the positive high pulse and negative low pulse in microseconds.
     //! @param priority gives the task it's priority
     SendIrMessageControl(IrTransmitter & IrLED,
                   uint16_t low,
@@ -33,10 +36,10 @@ public:
 
     //! SendIrMessageControl waiting for a hit to the queue
     //! @param IrTransmitter led that will be toggled
-    //! @param negLow decides the negative low
-    //! @param negHigh decides the negative High
-    //! @param posLow decides the positive low
-    //! @param posHigh decides the positive High
+    //! @param negLow decides the length of the negative low pulse
+    //! @param negHigh decides the length of the negative high pulse
+    //! @param posLow decides the length of the positive low pulse
+    //! @param posHigh decides the length of the positive high pulse
     //! @param priority gives the task it's priority
     SendIrMessageControl(IrTransmitter & IrLED,
                   uint16_t negLow,
@@ -48,12 +51,13 @@ public:
 
 
 
-    //! @param m is the coded message uint16_t
+    //! \brief Sends an ir-message.
+	//! @param m This is the encoded message that will be send
     void sendMessage(uint16_t m){
         IRMessagesSendQueue.write(m);
     }
 
-
+	//! \brief the main() of this task.
     void main(){
       enum class STATE {WAIT_MESSAGE, WAIT_SECOND_MESSAGE, SENDING_BIT};
       wait(IRMessagesSendQueue);
